@@ -8,6 +8,11 @@
 #include "Sha1.h"
 
 #include <string>
+#include <iostream>
+
+using namespace std;
+
+
 
 namespace algorithms {
 
@@ -21,17 +26,25 @@ Sha1::~Sha1() {
 }
 
 std::string Sha1::calculate(std::string message) {
-	/*h0 = 0x67452301
-	h1 = 0xEFCDAB89
-	h2 = 0x98BADCFE
-	h3 = 0x10325476
-	h4 = 0xC3D2E1F0
+	long h0 = 0x67452301;
+	long h1 = 0xEFCDAB89;
+	long h2 = 0x98BADCFE;
+	long h3 = 0x10325476;
+	long h4 = 0xC3D2E1F0;
 
-	ml = message length in bits (always a multiple of the number of bits in a character).
+	//ml = message length in bits (always a multiple of the number of bits in a character).
+	const char* c_message = message.c_str();
+	int ml = message.length()*8;
 
-	Pre-processing:
-	append the bit '1' to the message e.g. by adding 0x80 if message length is a multiple of 8 bits.
-	append 0 ≤ k < 512 bits '0', such that the resulting message length in bits
+	// ---------------
+	// Pre-processing:
+	// ---------------
+
+	//append the bit '1' to the message e.g. by adding 0x80 if message length is a multiple of 8 bits.
+	message += (unsigned char) 0x80; // We append 1000 0000 in this case
+	//cout <<"Message: "<< string_to_hex_seq(message)<<endl;
+
+	/*append 0 ≤ k < 512 bits '0', such that the resulting message length in bits
 	   is congruent to −64 ≡ 448 (mod 512)
 	append ml, in a 64-bit big-endian integer. Thus, the total length is a multiple of 512 bits.
 
@@ -82,6 +95,7 @@ std::string Sha1::calculate(std::string message) {
 
 	Produce the final hash value (big-endian) as a 160 bit number:
 	hh = (h0 leftshift 128) or (h1 leftshift 96) or (h2 leftshift 64) or (h3 leftshift 32) or h4*/
+	return "";
 }
 
 } /* namespace algorithms */
