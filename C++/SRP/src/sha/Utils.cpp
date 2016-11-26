@@ -33,7 +33,6 @@ namespace algorithms {
 			return result;
 		}
 
-
 		std::string char_vector_to_hex_str(vector<unsigned char>& s){
 			std::stringstream ss;
 
@@ -44,7 +43,6 @@ namespace algorithms {
 
 			return ss.str();
 		}
-
 
 		std::string string_to_hex_str(std::string s){
 			std::stringstream ss;
