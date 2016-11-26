@@ -38,7 +38,8 @@ std::string algorithms::utils::to_hex_str(T& s){
 		ss<<std::hex<<"0x"<<(int)c<<" ";
 	}
 
-	return ss.str();
+	std::string result = ss.str();
+	return result.substr(0, result.size()-1);
 }
 
 #endif /* SHA_UTILS_H_ */

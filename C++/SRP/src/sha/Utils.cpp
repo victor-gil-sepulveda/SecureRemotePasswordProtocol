@@ -33,27 +33,5 @@ namespace algorithms {
 			return result;
 		}
 
-		std::string char_vector_to_hex_str(vector<unsigned char>& s){
-			std::stringstream ss;
-
-			BOOST_FOREACH(unsigned char c, s)
-			{
-				ss<<std::hex<<"0x"<<(int)c<<" ";
-			}
-
-			return ss.str();
-		}
-
-		std::string string_to_hex_str(std::string s){
-			std::stringstream ss;
-
-			BOOST_FOREACH(unsigned char c, s)
-			{
-				ss<<std::hex<<"0x"<<(int)c<<" ";
-			}
-
-			return ss.str();
-		}
-
 	}
 }

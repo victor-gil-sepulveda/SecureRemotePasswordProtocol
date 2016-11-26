@@ -5,7 +5,6 @@
  *      Author: victor
  */
 
-#include <iostream>
 #include <string>
 #include <vector>
 #include "../../SRP/src/sha/Utils.h"
@@ -26,12 +25,12 @@ BOOST_AUTO_TEST_CASE(to_hex_str)
 
 	BOOST_CHECK_EQUAL(
 			algorithms::utils::to_hex_str(bytes),
-			"0x6 0x76 0x42 0x23 "
+			"0x6 0x76 0x42 0x23"
 	);
 
 	BOOST_CHECK_EQUAL(
 			algorithms::utils::to_hex_str(hola),
-			"0x48 0x6f 0x6c 0x61 "
+			"0x48 0x6f 0x6c 0x61"
 	);
 }
 
@@ -40,11 +39,6 @@ BOOST_AUTO_TEST_CASE(get_bytes)
 {
 	vector<unsigned char> bytes = algorithms::utils::get_bytes((long int) 591558150); // 0x23427606
 	vector<unsigned char> expected_bytes = {0x06, 0x76, 0x42, 0x23};
-	cout<<expected_bytes.size()<<" "<<bytes.size()
-		<<" "<<algorithms::utils::char_vector_to_hex_str(bytes)
-		<<" "<<algorithms::utils::char_vector_to_hex_str(expected_bytes)
-	<<endl;
-
 	BOOST_CHECK_EQUAL_COLLECTIONS(
 			bytes.begin(),bytes.end(),
 			expected_bytes.begin(), expected_bytes.end());
