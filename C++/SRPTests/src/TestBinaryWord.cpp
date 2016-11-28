@@ -44,7 +44,6 @@ BOOST_AUTO_TEST_CASE(BinaryWordConstructor)
 	// Copy constructor
 	BinaryWord w4(w3);
 	const vector<unsigned char>& bytes4 = w4.get_bytes();
-	cout<<bytes4.size()<<bytes3.size();
 	BOOST_CHECK_EQUAL_COLLECTIONS(
 			bytes4.begin(),bytes4.end(),
 			bytes3.begin(),bytes3.end());
@@ -70,12 +69,28 @@ BOOST_AUTO_TEST_CASE(logic_operators)
 	BinaryWord w1(0xFF00FF00, Endianness::LITTLE);
 	BinaryWord w2(0x35672304, Endianness::LITTLE);
 	BinaryWord result = BinaryWord::bitw_or(w1, w2);
-
 	BOOST_CHECK_EQUAL(
 			result.to_int(),
 			0xFF67FF04
 	);
 
+	result = BinaryWord::bitw_and(w1, w2);
+	BOOST_CHECK_EQUAL(
+			result.to_int(),
+			0x35002300
+	);
+
+	result = BinaryWord::bitw_xor(w1, w2);
+	BOOST_CHECK_EQUAL(
+			result.to_int(),
+			0xca67dc04
+	);
+
+	result = BinaryWord::bitw_not(w1);
+	BOOST_CHECK_EQUAL(
+			result.to_int(),
+			0x00FF00FF
+	);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
