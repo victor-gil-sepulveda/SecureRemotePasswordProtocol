@@ -40,8 +40,15 @@ BOOST_AUTO_TEST_CASE(BinaryWordConstructor)
 	BOOST_CHECK_EQUAL_COLLECTIONS(
 			bytes3.begin(),bytes3.end(),
 			hola_expected_bytes_big_endian.begin(), hola_expected_bytes_big_endian.end());
-}
 
+	// Copy constructor
+	BinaryWord w4(w3);
+	const vector<unsigned char>& bytes4 = w4.get_bytes();
+	cout<<bytes4.size()<<bytes3.size();
+	BOOST_CHECK_EQUAL_COLLECTIONS(
+			bytes4.begin(),bytes4.end(),
+			bytes3.begin(),bytes3.end());
+}
 
 BOOST_AUTO_TEST_CASE(to_string)
 {

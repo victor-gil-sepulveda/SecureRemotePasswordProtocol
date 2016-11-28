@@ -20,10 +20,13 @@ class BinaryWord {
 	public:
 		BinaryWord(long int value, Endianness e);
 		BinaryWord(std::string value, Endianness e);
+		BinaryWord(BinaryWord& b);
 		virtual ~BinaryWord();
 
 		std::string to_string();
 		const std::vector<unsigned char>& get_bytes();
+		Endianness get_endianness();
+
 		//BinaryWord or()
 		//BinaryWord xor()
 
@@ -33,7 +36,7 @@ class BinaryWord {
 
 		BinaryWord();
 
-		void assign_bytes(std::vector<unsigned char>& word_bytes, Endianness e);
+		void assign_bytes(std::vector<unsigned char>& word_bytes);
 
 };
 
