@@ -22,8 +22,8 @@ class BinaryWord {
 		BinaryWord(std::string value, Endianness e);
 		virtual ~BinaryWord();
 
-		std::string toString();
-
+		std::string to_string();
+		const std::vector<unsigned char>& get_bytes();
 		//BinaryWord or()
 		//BinaryWord xor()
 

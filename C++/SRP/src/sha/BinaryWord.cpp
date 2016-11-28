@@ -18,11 +18,13 @@ using std::vector;
 BinaryWord::BinaryWord():endianness(Endianness::LITTLE){}
 
 BinaryWord::BinaryWord(long int value, Endianness e): endianness(e) {
+	this->bytes.resize(4);
 	vector<unsigned char> word_bytes = algorithms::utils::get_bytes(value);
 	assign_bytes(word_bytes, this->endianness);
 }
 
 BinaryWord::BinaryWord(std::string value, Endianness e): endianness(e){
+	this->bytes.resize(4);
 	vector<unsigned char> word_bytes = algorithms::utils::get_bytes(value);
 	assign_bytes(word_bytes, this->endianness);
 }
@@ -47,5 +49,27 @@ void BinaryWord::assign_bytes(vector<unsigned char>& word_bytes, Endianness e){
 
 BinaryWord::~BinaryWord() {}
 
+std::string BinaryWord::to_string(){
+	std::string result = "    ";
+	switch(endianness){
+		case Endianness::LITTLE:
+		{
+			std::copy(bytes.begin(), bytes.end(), result.begin());
+			break;
+		}
+		case Endianness::BIG:
+		{
+			std::reverse_copy(bytes.begin(), bytes.end(), result.begin());
+			break;
+		}
+		default:
+		{}
+	}
+	return result;
+}
+
+const std::vector<unsigned char>& BinaryWord::get_bytes(){
+	return bytes;
+}
 
 

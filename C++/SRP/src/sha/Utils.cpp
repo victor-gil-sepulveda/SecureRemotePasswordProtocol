@@ -12,6 +12,7 @@
 #include <boost/foreach.hpp>
 #include <iostream>
 #include <bitset>
+#include <stdexcept>
 using namespace std;
 
 namespace algorithms {
@@ -37,8 +38,7 @@ namespace algorithms {
 		vector<unsigned char> get_bytes(string value) {
 
 			if (value.size() != 4){
-				cout<<"[ERROR get_bytes<string>] The string must have exactly 4 characters"<<endl;
-				exit(-1);
+				throw runtime_error("[ERROR get_bytes<string>] The string must have exactly 4 characters");
 			}
 
 			vector<unsigned char> result;
