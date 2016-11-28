@@ -63,6 +63,18 @@ BOOST_AUTO_TEST_CASE(to_string)
 			w2.to_string(),
 			"Hola"
 	);
+}
+
+BOOST_AUTO_TEST_CASE(logic_operators)
+{
+	BinaryWord w1(0xFF00FF00, Endianness::LITTLE);
+	BinaryWord w2(0x35672304, Endianness::LITTLE);
+	BinaryWord result = BinaryWord::bitw_or(w1, w2);
+
+	BOOST_CHECK_EQUAL(
+			result.to_int(),
+			0xFF67FF04
+	);
 
 }
 

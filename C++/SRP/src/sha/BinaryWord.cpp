@@ -15,11 +15,13 @@
 using std::runtime_error;
 using std::vector;
 
-// TODO: use std:: defined "known sizes"
 
-BinaryWord::BinaryWord():endianness(Endianness::LITTLE){}
+BinaryWord::BinaryWord():endianness(Endianness::LITTLE){
+	this->bytes.resize(4);
+	std::copy(bytes.begin(), bytes.end(), vector<unsigned char>(4,0).begin());
+}
 
-BinaryWord::BinaryWord(long int value, Endianness e): endianness(e) {
+BinaryWord::BinaryWord(unsigned long int value, Endianness e): endianness(e) {
 	this->bytes.resize(4);
 	vector<unsigned char> word_bytes = algorithms::utils::get_bytes(value);
 	assign_bytes(word_bytes);
@@ -31,12 +33,13 @@ BinaryWord::BinaryWord(std::string value, Endianness e): endianness(e){
 	assign_bytes(word_bytes);
 }
 
-BinaryWord::BinaryWord(BinaryWord& b):endianness(b.endianness){
+BinaryWord::BinaryWord(const BinaryWord& b):endianness(b.endianness){
 	this->bytes.resize(4);
 	vector<unsigned char>& word_bytes = const_cast<vector<unsigned char>& >(b.get_bytes());
 	// Straight copy of the bytes
 	std::copy(word_bytes.begin(), word_bytes.end(), bytes.begin());
 }
+
 
 void BinaryWord::assign_bytes(vector<unsigned char>& word_bytes){
 	switch(endianness){
@@ -60,7 +63,7 @@ void BinaryWord::assign_bytes(vector<unsigned char>& word_bytes){
 
 BinaryWord::~BinaryWord() {}
 
-std::string BinaryWord::to_string(){
+std::string BinaryWord::to_string() const{
 	std::string result;
 	result.resize(4);
 	switch(endianness){
@@ -82,29 +85,51 @@ std::string BinaryWord::to_string(){
 	return result;
 }
 
-std::string BinaryWord::to_int(){
-
+unsigned long int BinaryWord::to_int() const{
+	unsigned long int result = 0;
+	switch(endianness){
+		case Endianness::LITTLE:
+		{
+			result =  algorithms::utils::bytes_to_int(this->bytes);
+			break;
+		}
+		case Endianness::BIG:
+		{
+			vector<unsigned char> tmp;
+			tmp.resize(4);
+			std::reverse_copy(bytes.begin(), bytes.end(), tmp.begin());
+			result =  algorithms::utils::bytes_to_int(this->bytes);
+			break;
+		}
+		default:
+		{
+			throw runtime_error("Reached default at BinaryWord::to_string");
+		}
+	}
+	return result;
 }
 
-const std::vector<unsigned char>& BinaryWord::get_bytes(){
+const std::vector<unsigned char>& BinaryWord::get_bytes() const{
 	return bytes;
 }
 
-Endianness BinaryWord::get_endianness(){
+Endianness BinaryWord::get_endianness() const{
 	return endianness;
 }
 
-BinaryWord BinaryWord::operator|(BinaryWord& rh){
-	vector<unsigned char> resulting_bytes;
-
-	/*if (this->endianness != rh.endianness){
-		throw runtime_error("Error at BinariWord::OR operator: both operands must have equal endianness");
+BinaryWord BinaryWord::bitw_or(BinaryWord const &lh, BinaryWord const &rh){
+	if (lh.get_endianness() != rh.get_endianness()){
+		throw runtime_error("Error at BinaryWord::OR operator: both operands must have equal endianness");
 	}
 
-	for(unsigned int i = 0 ; i < 4; i++){
-		resulting_bytes.push_back(this->bytes[i] | rhs.bytes[i]);
-	}
+	BinaryWord result((lh.to_int() | rh.to_int()) , lh.get_endianness());
 
-	return*/
+	return result;
 }
 
+/*BinaryWord& BinaryWord::operator=(BinaryWord rh){
+	vector<unsigned char> word_bytes = algorithms::utils::get_bytes(rh.to_int());
+	this->endianness = rh.get_endianness();
+	assign_bytes(word_bytes);
+	return *this;
+}*/
