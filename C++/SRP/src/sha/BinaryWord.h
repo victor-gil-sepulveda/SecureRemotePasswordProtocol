@@ -14,7 +14,7 @@
 enum class Endianness {LITTLE, BIG};
 
 /*
- * Immutable object that stores a 32b word.
+ * Immutable object (<- this is the challenge) that stores a 32b word.
  */
 class BinaryWord {
 	public:
@@ -24,10 +24,13 @@ class BinaryWord {
 		virtual ~BinaryWord();
 
 		std::string to_string();
+		std::string to_int();
 		const std::vector<unsigned char>& get_bytes();
 		Endianness get_endianness();
 
 		//BinaryWord or()
+		BinaryWord operator|(BinaryWord& rh);
+
 		//BinaryWord xor()
 
 	private:

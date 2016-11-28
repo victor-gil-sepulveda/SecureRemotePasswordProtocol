@@ -50,5 +50,13 @@ BOOST_AUTO_TEST_CASE(get_bytes)
 			runtime_error);
 }
 
+BOOST_AUTO_TEST_CASE(to_int)
+{
+	vector<unsigned char> bytes = {0x06, 0x76, 0x42, 0x23};
+	BOOST_CHECK_EQUAL(
+			algorithms::utils::bytes_to_int(bytes),
+			(int) 591558150);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 

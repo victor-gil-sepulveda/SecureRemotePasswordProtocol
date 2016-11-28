@@ -49,5 +49,13 @@ namespace algorithms {
 			return result;
 		}
 
+		unsigned long int bytes_to_int(std::vector<unsigned char> bytes){
+			unsigned long int val = 0;
+			for (unsigned int i = 0; i<4; ++i){
+				val = (val<<8) | bytes[3-i];
+			}
+			return val;
+		}
 	}
+
 }

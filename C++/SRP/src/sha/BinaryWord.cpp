@@ -82,11 +82,29 @@ std::string BinaryWord::to_string(){
 	return result;
 }
 
+std::string BinaryWord::to_int(){
+
+}
+
 const std::vector<unsigned char>& BinaryWord::get_bytes(){
 	return bytes;
 }
 
 Endianness BinaryWord::get_endianness(){
 	return endianness;
+}
+
+BinaryWord BinaryWord::operator|(BinaryWord& rh){
+	vector<unsigned char> resulting_bytes;
+
+	/*if (this->endianness != rh.endianness){
+		throw runtime_error("Error at BinariWord::OR operator: both operands must have equal endianness");
+	}
+
+	for(unsigned int i = 0 ; i < 4; i++){
+		resulting_bytes.push_back(this->bytes[i] | rhs.bytes[i]);
+	}
+
+	return*/
 }
 

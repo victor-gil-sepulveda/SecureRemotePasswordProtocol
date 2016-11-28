@@ -19,6 +19,8 @@ namespace algorithms {
 		std::vector<unsigned char> get_bytes(unsigned long int value);
 		std::vector<unsigned char> get_bytes(std::string value);
 
+		unsigned long int bytes_to_int(std::vector<unsigned char> bytes);
+
 		template<typename T>
 		std::string to_hex_str(T& s);
 	} /* namespace utils */
