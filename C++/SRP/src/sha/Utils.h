@@ -7,24 +7,20 @@
 
 #ifndef SHA_UTILS_H_
 #define SHA_UTILS_H_
+
 #include <vector>
 #include <string>
-
 #include <sstream>
 #include <boost/foreach.hpp>
-#include <iostream>
-#include <bitset>
 
 namespace algorithms {
 
 	namespace utils {
 		std::vector<unsigned char> get_bytes(unsigned long int value);
+		std::vector<unsigned char> get_bytes(std::string value);
 
 		template<typename T>
 		std::string to_hex_str(T& s);
-
-		std::string char_vector_to_hex_str(std::vector<unsigned char>& s);
-		std::string string_to_hex_str(std::string s);
 	} /* namespace utils */
 
 } /* namespace algorithms */

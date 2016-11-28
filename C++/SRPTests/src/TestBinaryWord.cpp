@@ -34,7 +34,6 @@ BOOST_AUTO_TEST_CASE(to_hex_str)
 	);
 }
 
-
 BOOST_AUTO_TEST_CASE(get_bytes)
 {
 	vector<unsigned char> bytes = algorithms::utils::get_bytes((long int) 591558150); // 0x23427606
@@ -42,6 +41,12 @@ BOOST_AUTO_TEST_CASE(get_bytes)
 	BOOST_CHECK_EQUAL_COLLECTIONS(
 			bytes.begin(),bytes.end(),
 			expected_bytes.begin(), expected_bytes.end());
+
+	vector<unsigned char> hola_bytes = algorithms::utils::get_bytes("Hola");
+	vector<unsigned char> hola_expected_bytes = {0x48, 0x6f, 0x6c, 0x61};
+	BOOST_CHECK_EQUAL_COLLECTIONS(
+			hola_bytes.begin(),hola_bytes.end(),
+			hola_expected_bytes.begin(), hola_expected_bytes.end());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
