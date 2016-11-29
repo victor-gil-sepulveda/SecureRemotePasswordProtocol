@@ -9,6 +9,8 @@
 #include <vector>
 #include <stdexcept>
 #include <iostream>
+
+#include "../../SRP/src/sha/BinaryStringUtils.h"
 #include "../../SRP/src/sha/Utils.h"
 using namespace std;
 
@@ -71,11 +73,11 @@ BOOST_AUTO_TEST_CASE(pad_with_zeros)
 
 	string message = "abcde";
 	string result = algorithms::utils::pad_with_character(message, 'x', 64, 48);
-	cout<<result<<endl;
 
 	BOOST_CHECK_EQUAL(
 			result.size(),
 			48);
+
 	BOOST_CHECK_EQUAL(
 			result,
 			"abcdexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -86,6 +88,34 @@ BOOST_AUTO_TEST_CASE(pad_with_zeros)
 				result.size()%64,
 				48);
 
+}
+
+BOOST_AUTO_TEST_CASE(add_message_length)
+{
+	// From https://tools.ietf.org/html/rfc3174
+	//
+	// Original message :
+	// 61626364 65000000 00000000 00000000
+	// 00000000 00000000 00000000 00000000
+	// 00000000 00000000 00000000 00000000
+	// 00000000 00000000
+	//
+	// Final:
+	// 61626364 65000000 00000000 00000000
+    // 00000000 00000000 00000000 00000000
+    // 00000000 00000000 00000000 00000000
+    // 00000000 00000000 00000000 00000028
+	//
+	// length is 0x28 = 40
+	string message = "abcde";
+	string result = algorithms::utils::length_to_string_64b(message.size()*8);
+	BOOST_CHECK_EQUAL(
+			result.size(),
+			8);
+
+	BOOST_CHECK_EQUAL(
+			algorithms::utils::to_hex_str(result),
+			"0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x28");
 }
 
 
