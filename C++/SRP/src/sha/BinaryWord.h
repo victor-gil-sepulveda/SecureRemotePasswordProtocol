@@ -15,7 +15,8 @@
 /*
  * Immutable object (this was more a challenge than a spec) that stores a 32b word.
  * Inmutability implies to mess with constness.
- * Clearly endianness could be some sort of strategy class instead of enum+cases. This
+ *
+ * TODO: Clearly endianness could be some sort of strategy class instead of enum+cases. This
  * is indeed a possible future refactoring.
  *
  * TODO: use std:: defined "known sizes"
