@@ -127,6 +127,10 @@ BinaryWord BinaryWord::bitw_or(BinaryWord const &lh, BinaryWord const &rh){
 	return result;
 }
 
+BinaryWord operator|(BinaryWord const &lh, BinaryWord const &rh){
+	return BinaryWord::bitw_or(lh,rh);
+}
+
 BinaryWord BinaryWord::bitw_xor(BinaryWord const &lh, BinaryWord const &rh){
 	if (lh.get_endianness() != rh.get_endianness()){
 		throw runtime_error("Error at BinaryWord::XOR operator: both operands must have equal endianness");
@@ -135,6 +139,10 @@ BinaryWord BinaryWord::bitw_xor(BinaryWord const &lh, BinaryWord const &rh){
 	BinaryWord result((lh.to_int() ^ rh.to_int()) , lh.get_endianness());
 
 	return result;
+}
+
+BinaryWord operator^(BinaryWord const &lh, BinaryWord const &rh){
+	return BinaryWord::bitw_xor(lh,rh);
 }
 
 BinaryWord BinaryWord::bitw_and(BinaryWord const &lh, BinaryWord const &rh){
@@ -147,7 +155,16 @@ BinaryWord BinaryWord::bitw_and(BinaryWord const &lh, BinaryWord const &rh){
 	return result;
 }
 
-BinaryWord BinaryWord::bitw_not(BinaryWord const &lh){
-	BinaryWord result( ~lh.to_int(), lh.get_endianness());
+BinaryWord operator&(BinaryWord const &lh, BinaryWord const &rh){
+	return BinaryWord::bitw_and(lh,rh);
+}
+
+BinaryWord BinaryWord::bitw_not(BinaryWord const &rh){
+	BinaryWord result( ~rh.to_int(), rh.get_endianness());
 	return result;
 }
+
+BinaryWord operator~(BinaryWord const &rh){
+	return BinaryWord::bitw_not(rh);
+}
+

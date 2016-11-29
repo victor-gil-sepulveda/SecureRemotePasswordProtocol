@@ -91,6 +91,30 @@ BOOST_AUTO_TEST_CASE(logic_operators)
 			result.to_int(),
 			0x00FF00FF
 	);
+
+	result = w1 | w2;
+	BOOST_CHECK_EQUAL(
+			result.to_int(),
+			0xFF67FF04
+	);
+
+	result = w1 & w2;
+	BOOST_CHECK_EQUAL(
+			result.to_int(),
+			0x35002300
+	);
+
+	result = w1 ^ w2;
+	BOOST_CHECK_EQUAL(
+			result.to_int(),
+			0xca67dc04
+	);
+
+	result = ~w1;
+	BOOST_CHECK_EQUAL(
+			result.to_int(),
+			0x00FF00FF
+	);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

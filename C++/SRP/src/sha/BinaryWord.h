@@ -35,9 +35,13 @@ class BinaryWord {
 		Endianness get_endianness() const;
 
 		static BinaryWord bitw_or(BinaryWord const &lh, BinaryWord const &rh);
+		friend BinaryWord operator|(BinaryWord const &lh, BinaryWord const &rh);
 		static BinaryWord bitw_xor(BinaryWord const &lh, BinaryWord const &rh);
+		friend BinaryWord operator^(BinaryWord const &lh, BinaryWord const &rh);
 		static BinaryWord bitw_and(BinaryWord const &lh, BinaryWord const &rh);
-		static BinaryWord bitw_not(BinaryWord const &lh);
+		friend BinaryWord operator&(BinaryWord const &lh, BinaryWord const &rh);
+		static BinaryWord bitw_not(BinaryWord const &rh);
+		friend BinaryWord operator~(BinaryWord const &rh);
 
 	private:
 		BinaryWord();
