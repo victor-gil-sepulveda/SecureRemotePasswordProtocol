@@ -23,6 +23,10 @@ namespace algorithms {
 
 		template<typename T>
 		std::string to_hex_str(T& s);
+
+		std::string pad_with_character(std::string const& message, char c,
+				unsigned int chunk_byte_size, unsigned int last_chunk_byte_size);
+
 	} /* namespace utils */
 
 } /* namespace algorithms */

@@ -49,13 +49,27 @@ namespace algorithms {
 			return result;
 		}
 
-		unsigned long int bytes_to_int(std::vector<unsigned char> bytes){
+		unsigned long int bytes_to_int(vector<unsigned char> bytes){
 			unsigned long int val = 0;
 			for (unsigned int i = 0; i<4; ++i){
 				val = (val<<8) | bytes[3-i];
 			}
 			return val;
 		}
+
+		string pad_with_character(string const& message, char c, unsigned int chunk_byte_size, unsigned int last_chunk_byte_size){
+			string tmp(message);
+			// Append 0 ≤ k < 512 bits '0', such that the resulting message length in bits
+			// is congruent to −64 ≡ 448 (mod 512)
+			int last_chunk_byte_size_remainder = last_chunk_byte_size - (message.size() % chunk_byte_size);
+
+			if( last_chunk_byte_size_remainder < 0){
+				last_chunk_byte_size_remainder = (chunk_byte_size - message.size()) + last_chunk_byte_size;
+			}
+			tmp += std::string(last_chunk_byte_size_remainder, c);
+			return tmp;
+		}
+
 	}
 
 }
