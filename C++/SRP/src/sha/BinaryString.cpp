@@ -20,7 +20,6 @@ using namespace std;
 #define CHUNK_BIT_SIZE 512
 #define LAST_CHUNK_BIT_SIZE 448
 
-
 BinaryString::BinaryString(){}
 
 BinaryString::BinaryString(std::string const& initial_message) {
@@ -46,13 +45,24 @@ BinaryString::BinaryString(std::string const& initial_message) {
 	// length is a multiple of 512 bits.
 	message += algorithms::utils::length_to_string_64b(BYTE_TO_BIT_SIZE(initial_message.size()));
 
-	// -----------------------------
-	// Division in 512b (64B) chunks
-	// -----------------------------
-
+	// ---------------------------------------------------------------------------------------
+	// Division in 512b (64B) chunks, each subdivided in words of 32b (4B) words (16 words
+	// per chunk). In this case we only need to create the words.
+	// ---------------------------------------------------------------------------------------
+	for (unsigned int i = 0; i < message.size()/4; ++i){
+		this->words.push_back(new BinaryWord(message.substr(i*4, 4)));
+	}
 }
 
 BinaryString::~BinaryString() {
-	// TODO Auto-generated destructor stub
+	// TODO: change by boost::ptr_vector so that no complex
+	// deallocation is needed
+	for (unsigned int i = 0; i < words.size(); ++i){
+		delete words[i];
+	}
 }
 
+BinaryWord* BinaryString::get_32b_word_at(int chunk_nr, int word_nr){
+	unsigned int index = chunk_nr*16+word_nr;
+	return words[index];
+};

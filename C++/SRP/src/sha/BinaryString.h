@@ -22,13 +22,11 @@ class BinaryString {
 		BinaryString(std::string const & initial_message);
 		virtual ~BinaryString();
 
-		void append_one(){};
-
-		BinaryWord* get_word_at(int position){};
+		BinaryWord* get_32b_word_at(int chunk_nr, int word_nr);
 
 	private:
 		BinaryString();
-		static void get_bin_words_from_string(std::string s){};
+
 		std::vector<BinaryWord*> words;
 		std::string message;
 };

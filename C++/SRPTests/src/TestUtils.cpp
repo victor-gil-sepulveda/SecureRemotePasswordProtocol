@@ -107,6 +107,7 @@ BOOST_AUTO_TEST_CASE(add_message_length)
     // 00000000 00000000 00000000 00000028
 	//
 	// length is 0x28 = 40
+
 	string message = "abcde";
 	string result = algorithms::utils::length_to_string_64b(message.size()*8);
 	BOOST_CHECK_EQUAL(
