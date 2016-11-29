@@ -8,9 +8,10 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
+#include <iostream>
 #include "../../SRP/src/sha/Utils.h"
-
 using namespace std;
+
 #include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(AlgorithmUtilities)
@@ -57,6 +58,37 @@ BOOST_AUTO_TEST_CASE(to_int)
 			algorithms::utils::bytes_to_int(bytes),
 			(int) 591558150);
 }
+
+BOOST_AUTO_TEST_CASE(pad_with_zeros)
+{
+	// From https://tools.ietf.org/html/rfc3174
+	// original message :01100001 01100010 01100011 01100100 01100101 ("abcde")
+	// final:
+	// 61626364 65000000 00000000 00000000
+    // 00000000 00000000 00000000 00000000
+    // 00000000 00000000 00000000 00000000
+    // 00000000 00000000
+
+	string message = "abcde";
+	string result = algorithms::utils::pad_with_character(message, 'x', 64, 48);
+	cout<<result<<endl;
+
+	BOOST_CHECK_EQUAL(
+			result.size(),
+			48);
+	BOOST_CHECK_EQUAL(
+			result,
+			"abcdexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+	message = "abcdexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // size > 48
+	result = algorithms::utils::pad_with_character(message, 'x', 64, 48);
+	BOOST_CHECK_EQUAL(
+				result.size()%64,
+				48);
+
+}
+
+
 
 BOOST_AUTO_TEST_SUITE_END()
 
