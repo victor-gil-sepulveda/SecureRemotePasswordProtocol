@@ -11,8 +11,7 @@
 #include <string>
 #include <vector>
 
-enum class Endianness {LITTLE, BIG};
-
+#include "Endianness.h"
 /*
  * Immutable object (this was more a challenge than a spec) that stores a 32b word.
  * Inmutability implies to mess with constness.

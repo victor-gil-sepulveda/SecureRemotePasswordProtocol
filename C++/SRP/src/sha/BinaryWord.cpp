@@ -15,7 +15,6 @@
 using std::runtime_error;
 using std::vector;
 
-
 BinaryWord::BinaryWord():endianness(Endianness::LITTLE){
 	this->bytes.resize(4);
 	std::copy(bytes.begin(), bytes.end(), vector<unsigned char>(4,0).begin());
@@ -39,7 +38,6 @@ BinaryWord::BinaryWord(const BinaryWord& b):endianness(b.endianness){
 	// Straight copy of the bytes
 	std::copy(word_bytes.begin(), word_bytes.end(), bytes.begin());
 }
-
 
 void BinaryWord::assign_bytes(vector<unsigned char>& word_bytes){
 	switch(endianness){
@@ -167,4 +165,3 @@ BinaryWord BinaryWord::bitw_not(BinaryWord const &rh){
 BinaryWord operator~(BinaryWord const &rh){
 	return BinaryWord::bitw_not(rh);
 }
-
