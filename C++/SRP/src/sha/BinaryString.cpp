@@ -26,7 +26,7 @@ BinaryString::BinaryString(std::string const& initial_message) {
 	// per chunk). In this case we only need to create the words.
 	// ---------------------------------------------------------------------------------------
 	if(initial_message.size()%64 != 0){
-		throw runtime_error("Error at BinaryString::Creation: the message is not multiple of 512b.");
+		throw runtime_error("Error at BinaryString::Constructor: the message is not multiple of 512b.");
 	}
 
 	num_512b_chunks = initial_message.size()/64;
@@ -66,5 +66,5 @@ void BinaryString::get_words_from_chunk(unsigned int chunk_nr, std::vector<std::
 	out.clear();
 	out.resize(16);
 	unsigned int start = chunk_nr*16;
-	for (unsigned int i = 0; i < 16; ++i) out[i+start] = out[i];
+	for (unsigned int i = 0; i < 16; ++i) out[i] = this->uint_words[start+i];
 }

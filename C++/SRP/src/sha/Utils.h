@@ -11,6 +11,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <iomanip>
 #include <boost/foreach.hpp>
 #include <cstdint>
 
@@ -30,6 +31,7 @@ namespace algorithms {
 
 		// FEATURE: partial specialization of functions (can be done via overloading,
 		// but this forces a compile-time choice)
+		// This implementation would be a better choice :) (http://blog.regehr.org/archives/1063)
 		template <int n>
 		std::uint32_t circular_left_shift(std::uint32_t val);
 
@@ -50,7 +52,7 @@ std::string algorithms::utils::to_hex_str(T& s){
 
 	BOOST_FOREACH(unsigned char c, s)
 	{
-		ss<<std::hex<<"0x"<<(int)c<<" ";
+		ss<<"0x"<<std::hex<<std::setfill('0')<<std::setw(2)<<(int)c<<" ";
 	}
 
 	std::string result = ss.str();
