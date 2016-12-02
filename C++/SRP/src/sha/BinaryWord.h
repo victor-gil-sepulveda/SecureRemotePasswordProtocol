@@ -8,6 +8,7 @@
 #ifndef SHA_BINARYWORD_H_
 #define SHA_BINARYWORD_H_
 
+#include <cstdint>
 #include <string>
 #include <vector>
 
@@ -23,13 +24,13 @@
  */
 class BinaryWord {
 	public:
-		BinaryWord(unsigned long int value, Endianness e);
+		BinaryWord(std::uint32_t value, Endianness e);
 		BinaryWord(std::string value, Endianness e);
 		BinaryWord(const BinaryWord& b);
 		virtual ~BinaryWord();
 
 		std::string to_string() const;
-		unsigned long int to_int() const;
+		std::uint32_t to_int() const;
 
 		const std::vector<unsigned char>& get_bytes() const;
 		Endianness get_endianness() const;

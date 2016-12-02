@@ -62,7 +62,7 @@ void BinaryString::get_words_from_chunk(unsigned int chunk_nr, std::vector<Binar
 	for (unsigned int i = 0; i < 16; ++i) out[i+start] = out[i];
 }
 
-void BinaryString::get_words_from_chunk(unsigned int chunk_nr, std::vector<std::uint64_t>& out) {
+void BinaryString::get_words_from_chunk(unsigned int chunk_nr, std::vector<std::uint32_t>& out) {
 	out.clear();
 	out.resize(16);
 	unsigned int start = chunk_nr*16;

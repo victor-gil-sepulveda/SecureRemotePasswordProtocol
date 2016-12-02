@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <cstdint>
 #include <stdexcept>
 
 #include "Utils.h"
@@ -20,7 +21,7 @@ BinaryWord::BinaryWord():endianness(Endianness::LITTLE){
 	std::copy(bytes.begin(), bytes.end(), vector<unsigned char>(4,0).begin());
 }
 
-BinaryWord::BinaryWord(unsigned long int value, Endianness e): endianness(e) {
+BinaryWord::BinaryWord(std::uint32_t value, Endianness e): endianness(e) {
 	this->bytes.resize(4);
 	vector<unsigned char> word_bytes = algorithms::utils::get_bytes(value);
 	assign_bytes(word_bytes);
@@ -83,8 +84,8 @@ std::string BinaryWord::to_string() const{
 	return result;
 }
 
-unsigned long int BinaryWord::to_int() const{
-	unsigned long int result = 0;
+std::uint32_t BinaryWord::to_int() const{
+	std::uint32_t result = 0;
 	switch(endianness){
 		case Endianness::LITTLE:
 		{
