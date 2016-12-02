@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(to_string)
 	BinaryWord w2("Hola", Endianness::BIG);
 	BOOST_CHECK_EQUAL(
 			w2.to_string(),
-			"Hola"
+			"aloH"
 	);
 }
 

@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(to_hex_str)
 
 	BOOST_CHECK_EQUAL(
 			algorithms::utils::to_hex_str(bytes),
-			"0x6 0x76 0x42 0x23"
+			"0x06 0x76 0x42 0x23"
 	);
 
 	BOOST_CHECK_EQUAL(
@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(to_hex_str)
 
 BOOST_AUTO_TEST_CASE(get_bytes)
 {
-	vector<unsigned char> bytes = algorithms::utils::get_bytes((long int) 591558150); // 0x23427606
+	vector<unsigned char> bytes = algorithms::utils::get_bytes((std::uint32_t) 591558150); // 0x23427606
 	vector<unsigned char> expected_bytes = {0x06, 0x76, 0x42, 0x23};
 	BOOST_CHECK_EQUAL_COLLECTIONS(
 			bytes.begin(),bytes.end(),
@@ -118,13 +118,13 @@ BOOST_AUTO_TEST_CASE(add_message_length)
 
 	BOOST_CHECK_EQUAL(
 			algorithms::utils::to_hex_str(result),
-			"0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x28");
+			"0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x28");
 }
 
 BOOST_AUTO_TEST_CASE(l_circular_shift)
 {
-	std::uint64_t val = 0x00000001;
-	std::uint64_t result = algorithms::utils::circular_left_shift<1>(val);
+	std::uint32_t val = 0x00000001;
+	std::uint32_t result = algorithms::utils::circular_left_shift<1>(val);
 	BOOST_CHECK_EQUAL(result, 2);
 	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
 
