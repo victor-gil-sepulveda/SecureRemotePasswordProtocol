@@ -5,6 +5,7 @@
  *      Author: victor
  */
 
+#include <bitset>
 #include <string>
 #include <vector>
 #include <stdexcept>
@@ -12,6 +13,7 @@
 
 #include "../../SRP/src/sha/BinaryStringUtils.h"
 #include "../../SRP/src/sha/Utils.h"
+#include "TestTools.h"
 using namespace std;
 
 #include <boost/test/unit_test.hpp>
@@ -119,7 +121,33 @@ BOOST_AUTO_TEST_CASE(add_message_length)
 			"0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x28");
 }
 
+BOOST_AUTO_TEST_CASE(l_circular_shift)
+{
+	std::uint64_t val = 0x00000001;
+	std::uint64_t result = algorithms::utils::circular_left_shift<1>(val);
+	BOOST_CHECK_EQUAL(result, 2);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
 
+	val = 0x00000001;
+	result = algorithms::utils::circular_left_shift<3>(val);
+	BOOST_CHECK_EQUAL(result, 8);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+
+	val = 0xFF000000;
+	result = algorithms::utils::circular_left_shift<4>(val);
+	BOOST_CHECK_EQUAL(result, 0xF000000F);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+
+	val = 0xFF000000;
+	result = algorithms::utils::circular_left_shift<8>(val);
+	BOOST_CHECK_EQUAL(result, 0x000000FF);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+
+	val = 0x81000000;
+	result = algorithms::utils::circular_left_shift<7>(val);
+	BOOST_CHECK_EQUAL(result, 0x80000040);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+}
 
 BOOST_AUTO_TEST_SUITE_END()
 
