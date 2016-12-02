@@ -145,7 +145,43 @@ void algorithms::Sha1::main_loop(std::uint32_t& h0, std::uint32_t& h1,
 		b = a;
 		a = temp;
 	}
-
+	// From https://www.ipa.go.jp/security/rfc/RFC3174EN.html
+		// Better version for parallelization
+		/*unsigned int t;
+		for (t = 0; t < 20; t++) {
+			temp = SHA1CircularShift(5, a) + ((b & c) | ((~b) & d)) + e + words[t]
+					+ 0x5A827999;
+			e = d;
+			d = c;
+			c = SHA1CircularShift(30, b);
+			b = a;
+			a = temp;
+		}
+		for (t = 20; t < 40; t++) {
+			temp = SHA1CircularShift(5,a) + (b ^ c ^ d) + e + words[t] + 0x6ED9EBA1;
+			e = d;
+			d = c;
+			c = SHA1CircularShift(30, b);
+			b = a;
+			a = temp;
+		}
+		for (t = 40; t < 60; t++) {
+			temp = SHA1CircularShift(5, a) + ((b & c) | (b & d) | (c & d)) + e
+					+ words[t] + 0x8F1BBCDC;
+			e = d;
+			d = c;
+			c = SHA1CircularShift(30, b);
+			b = a;
+			a = temp;
+		}
+		for (t = 60; t < 80; t++) {
+			temp = SHA1CircularShift(5,a) + (b ^ c ^ d) + e + words[t] + 0xCA62C1D6;
+			e = d;
+			d = c;
+			c = SHA1CircularShift(30, b);
+			b = a;
+			a = temp;
+		}*/
 	// HASH ACCUM
 	//		Add this chunk's hash to result so far:
 	//			h0 = h0 + a
