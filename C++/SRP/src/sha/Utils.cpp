@@ -70,6 +70,27 @@ namespace algorithms {
 			return tmp;
 		}
 
+		void print_32b_bin(std::uint64_t x, std::uint64_t y){
+			std::bitset<32> bx(x);
+			cout<<bx<<endl;
+			std::bitset<32> by(y);
+			cout<<by<<endl;
+		}
+
 	}
 
+}
+
+
+// Fully specialized template (partially specialized or not specialized must be defined
+// in the header file).
+template <>
+std::uint32_t algorithms::utils::circular_left_shift<1>(std::uint32_t val){
+	std::uint32_t mask = 0x80000000;
+	if ((val&mask) == 0){
+		return val<<1;
+	}
+	else{
+		return (val<<1) +1;
+	}
 }

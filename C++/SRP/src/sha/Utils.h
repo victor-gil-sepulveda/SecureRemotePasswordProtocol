@@ -13,6 +13,9 @@
 #include <sstream>
 #include <boost/foreach.hpp>
 
+#define BIT_TO_BYTE_SIZE(x) (x/8)
+#define BYTE_TO_BIT_SIZE(x) (x*8)
+
 namespace algorithms {
 
 	namespace utils {
@@ -21,11 +24,20 @@ namespace algorithms {
 
 		unsigned long int bytes_to_int(std::vector<unsigned char> bytes);
 
-		template<typename T>
-		std::string to_hex_str(T& s);
-
 		std::string pad_with_character(std::string const& message, char c,
 				unsigned int chunk_byte_size, unsigned int last_chunk_byte_size);
+
+		// FEATURE: partial specialization of functions (can be done via overloading,
+		// but this forces a compile-time choice)
+		template <int n>
+		std::uint32_t circular_left_shift(std::uint32_t val);
+
+		template <typename T>
+		std::string to_hex_str(T& s);
+
+
+		void print_32b_bin(std::uint64_t x, std::uint64_t y);
+
 
 	} /* namespace utils */
 
@@ -43,5 +55,22 @@ std::string algorithms::utils::to_hex_str(T& s){
 	std::string result = ss.str();
 	return result.substr(0, result.size()-1);
 }
+
+
+template <int n>
+std::uint32_t algorithms::utils::circular_left_shift(std::uint32_t val){
+	int amount = n % 64;
+	if (amount == 0) return val;
+
+	std::uint32_t mask = 0xFFFFFFFF;
+	std::uint32_t lmask = mask >> n;
+	std::uint32_t hmask = mask << n;
+	uint32_t l = lmask&val;
+	uint32_t h = hmask&val;
+	return l << n | h >> (32-n);
+
+}
+
+
 
 #endif /* SHA_UTILS_H_ */
