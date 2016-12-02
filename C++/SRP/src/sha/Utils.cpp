@@ -19,9 +19,9 @@ namespace algorithms {
 
 	namespace utils {
 
-		vector<unsigned char> get_bytes(unsigned long int value) {
+		vector<unsigned char> get_bytes(std::uint32_t value) {
 			vector<unsigned char> result;
-			unsigned long mask = 0x000000FF; //0000 0000 0000 0000 0000 0000 1111 1111
+			std::uint32_t mask = 0x000000FF; //0000 0000 0000 0000 0000 0000 1111 1111
 
 			for (unsigned int i = 0; i<4; ++i){
 				//std::bitset<32> x(mask);
@@ -49,8 +49,8 @@ namespace algorithms {
 			return result;
 		}
 
-		unsigned long int bytes_to_int(vector<unsigned char> bytes){
-			unsigned long int val = 0;
+		std::uint32_t bytes_to_int(vector<unsigned char> bytes){
+			std::uint32_t val = 0;
 			for (unsigned int i = 0; i<4; ++i){
 				val = (val<<8) | bytes[3-i];
 			}
@@ -70,7 +70,7 @@ namespace algorithms {
 			return tmp;
 		}
 
-		void print_32b_bin(std::uint64_t x, std::uint64_t y){
+		void print_32b_bin(std::uint32_t x, std::uint32_t y){
 			std::bitset<32> bx(x);
 			cout<<bx<<endl;
 			std::bitset<32> by(y);

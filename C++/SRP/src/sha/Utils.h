@@ -12,6 +12,7 @@
 #include <string>
 #include <sstream>
 #include <boost/foreach.hpp>
+#include <cstdint>
 
 #define BIT_TO_BYTE_SIZE(x) (x/8)
 #define BYTE_TO_BIT_SIZE(x) (x*8)
@@ -19,10 +20,10 @@
 namespace algorithms {
 
 	namespace utils {
-		std::vector<unsigned char> get_bytes(unsigned long int value);
+		std::vector<unsigned char> get_bytes(std::uint32_t value);
 		std::vector<unsigned char> get_bytes(std::string value);
 
-		unsigned long int bytes_to_int(std::vector<unsigned char> bytes);
+		std::uint32_t bytes_to_int(std::vector<unsigned char> bytes);
 
 		std::string pad_with_character(std::string const& message, char c,
 				unsigned int chunk_byte_size, unsigned int last_chunk_byte_size);
@@ -36,7 +37,7 @@ namespace algorithms {
 		std::string to_hex_str(T& s);
 
 
-		void print_32b_bin(std::uint64_t x, std::uint64_t y);
+		void print_32b_bin(std::uint32_t x, std::uint32_t y);
 
 
 	} /* namespace utils */
