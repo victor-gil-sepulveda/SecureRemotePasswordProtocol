@@ -8,6 +8,7 @@
 #ifndef SHA_BINARYSTRING_H_
 #define SHA_BINARYSTRING_H_
 
+#include <cstdint>
 #include <vector>
 #include <string>
 
@@ -24,11 +25,18 @@ class BinaryString {
 
 		BinaryWord* get_32b_word_at(int chunk_nr, int word_nr);
 
+		void get_words_from_chunk(unsigned int chunk_nr, std::vector<BinaryWord*>& out);
+		void get_words_from_chunk(unsigned int chunk_nr, std::vector<std::uint64_t>& out);
+
+		virtual unsigned int get_num_512b_chunks() const;
+
 	private:
 		BinaryString();
 
 		std::vector<BinaryWord*> words;
+		std::vector<std::uint64_t> uint_words;
 		std::string message;
+		unsigned int num_512b_chunks;
 };
 
 #endif /* SHA_BINARYSTRING_H_ */
