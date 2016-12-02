@@ -37,10 +37,9 @@ std::string algorithms::Sha1::preprocess_message(const std::string& initial_mess
 			"This function expects a char size of 1 byte.");
 
 	// -------------------------
-	// Preprocess of the message
+	// Preprocessing of the message
 	// -------------------------
 	std::string  message = initial_message;
-
 	// Append the bit '1' to the message e.g. by adding 0x80 if message length is a multiple of 8 bits.
 	message += 0x80;
 
@@ -62,10 +61,8 @@ void algorithms::Sha1::word_array_init(unsigned int chunk_id,
 		BinaryString& bin_message, vector<std::uint32_t>& words) {
 
 	bin_message.get_words_from_chunk(chunk_id, words);
-	for (unsigned int i = 0; i < 16; i++)
-		cout << words[i] << ", ";
-	cout << endl;
 	words.resize(80);
+
 	// Extend the sixteen 32-bit words into eighty 32-bit words:
 	// 		for i from 16 to 79
 	//		w[i] = (w[i-3] xor w[i-8] xor w[i-14] xor w[i-16]) leftrotate 1
@@ -73,9 +70,6 @@ void algorithms::Sha1::word_array_init(unsigned int chunk_id,
 		words[i] = algorithms::utils::circular_left_shift<1>(
 				words[i - 3] ^ words[i - 8] ^ words[i - 14] ^ words[i - 16]);
 	}
-	for (unsigned int i = 0; i < 80; i++)
-		cout << words[i] << ", ";
-	cout << endl;
 }
 
 void algorithms::Sha1::main_loop(std::uint32_t& h0, std::uint32_t& h1,
@@ -203,10 +197,8 @@ std::string algorithms::Sha1::calculate(const std::string& initial_message) {
 	std::uint32_t h2 = Sha1Constants::H2;
 	std::uint32_t h3 = Sha1Constants::H3;
 	std::uint32_t h4 = Sha1Constants::H4;
-	cout<<"INI h0-4: "<<h0<<" "<<h1<<" "<<h2<<" "<<h3<<" "<<h4<<endl;
+
 	std::string message = preprocess_message(initial_message);
-	cout<<"Preprocessed message:  "<<endl;
-	cout<<algorithms::utils::to_hex_str(message)<<endl;
 
 	// Process the message in successive 512-bit chunks:
 	// break message into 512-bit chunks
@@ -223,8 +215,6 @@ std::string algorithms::Sha1::calculate(const std::string& initial_message) {
 		main_loop(h0, h1, h2, h3, h4, words);
 
 	}
-
-	cout<<"h0-4: "<<h0<<" "<<h1<<" "<<h2<<" "<<h3<<" "<<h4<<endl;
 
 	// Produce the final hash value (big-endian) as a 160 bit number:
 	// hh = (h0 leftshift 128) or (h1 leftshift 96) or (h2 leftshift 64) or (h3 leftshift 32) or h4
