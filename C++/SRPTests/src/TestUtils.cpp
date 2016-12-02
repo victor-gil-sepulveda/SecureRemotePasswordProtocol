@@ -147,6 +147,14 @@ BOOST_AUTO_TEST_CASE(l_circular_shift)
 	result = algorithms::utils::circular_left_shift<7>(val);
 	BOOST_CHECK_EQUAL(result, 0x80000040);
 	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+
+	// Non-trivial case
+	val = 4023233417;
+	uint32_t expected = 2079550178;
+	result = algorithms::utils::circular_left_shift<30>(val);
+	BOOST_CHECK_EQUAL(result, expected);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+	IF_VERBOSE(algorithms::utils::print_32b_bin(expected, result));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

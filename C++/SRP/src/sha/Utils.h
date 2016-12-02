@@ -67,7 +67,7 @@ std::uint32_t algorithms::utils::circular_left_shift(std::uint32_t val){
 
 	std::uint32_t mask = 0xFFFFFFFF;
 	std::uint32_t lmask = mask >> n;
-	std::uint32_t hmask = mask << n;
+	std::uint32_t hmask = mask << (32 - n);
 	uint32_t l = lmask&val;
 	uint32_t h = hmask&val;
 	return l << n | h >> (32-n);
