@@ -32,7 +32,7 @@ BinaryString::BinaryString(std::string const& initial_message) {
 	num_512b_chunks = initial_message.size()/64;
 	for (unsigned int i = 0; i < initial_message.size()/4; ++i){
 		const string message_chunk = initial_message.substr(i*4, 4);
-		BinaryWord* bw = new BinaryWord(message_chunk, Endianness::BIG);
+		BinaryWord* bw = new BinaryWord(message_chunk, Endianness::BIG);// TODO: this to little, to_string must be made symmetrical
 		this->words.push_back(bw);
 		this->uint_words.push_back(bw->to_int());
 	}
