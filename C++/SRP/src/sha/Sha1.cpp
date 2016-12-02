@@ -31,13 +31,13 @@ Sha1::~Sha1() {}
 
 std::string algorithms::Sha1::preprocess_message(const std::string& initial_message) {
 	std::string tmp_message;
-	//
+
 	// Check assumption: sizeof(char) = 8
 	BOOST_ASSERT_MSG(BYTE_TO_BIT_SIZE(sizeof(char)) == 8,
 			"This function expects a char size of 1 byte.");
 
 	// -------------------------
-	// Preprocessing of the message
+	// Message preprocessing
 	// -------------------------
 	std::string  message = initial_message;
 	// Append the bit '1' to the message e.g. by adding 0x80 if message length is a multiple of 8 bits.
@@ -64,8 +64,6 @@ void algorithms::Sha1::word_array_init(unsigned int chunk_id,
 	words.resize(80);
 
 	// Extend the sixteen 32-bit words into eighty 32-bit words:
-	// 		for i from 16 to 79
-	//		w[i] = (w[i-3] xor w[i-8] xor w[i-14] xor w[i-16]) leftrotate 1
 	for (unsigned int i = 16; i < 80; ++i) {
 		words[i] = algorithms::utils::circular_left_shift<1>(
 				words[i - 3] ^ words[i - 8] ^ words[i - 14] ^ words[i - 16]);
@@ -79,30 +77,13 @@ void algorithms::Sha1::main_loop(std::uint32_t& h0, std::uint32_t& h1,
 	std::uint32_t a, b, c, d, e, f, k, temp;
 
 	// Initialize hash value for this chunk:
-	//	a = h0
-	//	b = h1
-	//	c = h2
-	//	d = h3
-	//	e = h4
 	a = h0;
 	b = h1;
 	c = h2;
 	d = h3;
 	e = h4;
+
 	// Main loop:
-	// for i from 0 to 79
-	//	  if 0 ≤ i ≤ 19 then
-	//		f = (b and c) or ((not b) and d)
-	//		k = 0x5A827999
-	//	  else if 20 ≤ i ≤ 39
-	//		f = b xor c xor d
-	//		k = 0x6ED9EBA1
-	//	  else if 40 ≤ i ≤ 59
-	//		f = (b and c) or (b and d) or (c and d)
-	//		k = 0x8F1BBCDC
-	//	  else if 60 ≤ i ≤ 79
-	//		f = b xor c xor d
-	//		k = 0xCA62C1D6
 	for (unsigned int i = 0; i < 80; ++i){
 		if (i <= 19){
 			f = (b & c) | ((~b) & d);
@@ -126,12 +107,6 @@ void algorithms::Sha1::main_loop(std::uint32_t& h0, std::uint32_t& h1,
 				}
 			}
 		}
-		// temp = (a leftrotate 5) + f + e + k + w[i]
-		// e = d
-		// d = c
-		// c = b leftrotate 30
-		// b = a
-		// a = temp
 		temp = algorithms::utils::circular_left_shift<5>(a) + f + e + k + words[i];
 		e = d;
 		d = c;
@@ -176,13 +151,8 @@ void algorithms::Sha1::main_loop(std::uint32_t& h0, std::uint32_t& h1,
 			b = a;
 			a = temp;
 		}*/
-	// HASH ACCUM
-	//		Add this chunk's hash to result so far:
-	//			h0 = h0 + a
-	//			h1 = h1 + b
-	//			h2 = h2 + c
-	//			h3 = h3 + d
-	//			h4 = h4 + e
+
+	// Add this chunk's hash to result so far:
 	h0 += a;
 	h1 += b;
 	h2 += c;
@@ -202,8 +172,6 @@ std::string algorithms::Sha1::calculate(const std::string& initial_message) {
 
 	// Process the message in successive 512-bit chunks:
 	// break message into 512-bit chunks
-	// for each chunk
-	//		break chunk into sixteen 32-bit big-endian words w[i], 0 ≤ i ≤ 15
 	BinaryString bin_message(message);
 	unsigned int number_of_chunks = bin_message.get_num_512b_chunks();
 
@@ -217,7 +185,6 @@ std::string algorithms::Sha1::calculate(const std::string& initial_message) {
 	}
 
 	// Produce the final hash value (big-endian) as a 160 bit number:
-	// hh = (h0 leftshift 128) or (h1 leftshift 96) or (h2 leftshift 64) or (h3 leftshift 32) or h4
 	string hash = BinaryWord(h0, Endianness::BIG).to_string() +
 			BinaryWord(h1, Endianness::BIG).to_string() +
 			BinaryWord(h2, Endianness::BIG).to_string() +
