@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 
+#include "../../SRP/src/sha/Base64.h"
 #include "../../SRP/src/sha/Sha1.h"
 #include "../../SRP/src/sha/Utils.h"
 using namespace std;
@@ -16,7 +17,6 @@ using namespace std;
 #include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(Sha1Test)
-
 
 /*
  * Test output from the implementation in https://www.ipa.go.jp/security/rfc/RFC3174EN.html
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(word_array_init)
 
 	string initial_message = "Hola!";
 	string preprocessed_message = algorithms::Sha1::preprocess_message(initial_message);
-	BinaryString bs (preprocessed_message); // ************** TEST BIN STRING
+	BinaryString bs (preprocessed_message); // ************** TODO: TEST BIN STRING
 	vector<uint32_t> words;
 	algorithms::Sha1::word_array_init(0, bs, words);
 
@@ -87,6 +87,30 @@ BOOST_AUTO_TEST_CASE(main_loop)
 			hs.end(),
 			expected_hs.begin(),
 			expected_hs.end());
+}
+
+BOOST_AUTO_TEST_CASE(full_sha1)
+{
+	// Results obtained with this Python line:
+	// base64.b64encode(hashlib.sha1("<TEXT>").digest())
+
+	algorithms::Sha1 s;
+	string hash = s.calculate(std::string("Hola!"));
+	string expected_b64_hash = "9kjNws7nY/bLkIegWAcpcS2TJQ4=";
+	string b64_hash = algorithms::Base64::base64_encode((unsigned char*) hash.c_str(), hash.size());
+	BOOST_CHECK_EQUAL(b64_hash, expected_b64_hash);
+
+	hash = s.calculate(std::string("Adios!"));
+	expected_b64_hash = "c8wqZwVik9pzoVh2AVw6RfFzMk4=";
+	b64_hash = algorithms::Base64::base64_encode((unsigned char*) hash.c_str(), hash.size());
+	BOOST_CHECK_EQUAL(b64_hash, expected_b64_hash);
+
+	hash = s.calculate(std::string(
+			"This is a message using more than 512b (64 characters). The goal here"
+			" is to force the algorithm to process more than one 512b chunk"));
+	expected_b64_hash = "16Yeg95nRpf8C6Z/3KK7aU6Om0U=";
+	b64_hash = algorithms::Base64::base64_encode((unsigned char*) hash.c_str(), hash.size());
+	BOOST_CHECK_EQUAL(b64_hash, expected_b64_hash);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
