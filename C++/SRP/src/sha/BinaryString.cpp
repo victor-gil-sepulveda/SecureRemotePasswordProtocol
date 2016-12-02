@@ -25,13 +25,13 @@ BinaryString::BinaryString(std::string const& initial_message) {
 	// Division in 512b (64B) chunks, each subdivided in words of 32b (4B) words (16 words
 	// per chunk). In this case we only need to create the words.
 	// ---------------------------------------------------------------------------------------
-	if(message.size()%64 != 0){
+	if(initial_message.size()%64 != 0){
 		throw runtime_error("Error at BinaryString::Creation: the message is not multiple of 512b.");
 	}
 
-	num_512b_chunks = message.size()/64;
-	for (unsigned int i = 0; i < message.size()/4; ++i){
-		const string message_chunk = message.substr(i*4, 4);
+	num_512b_chunks = initial_message.size()/64;
+	for (unsigned int i = 0; i < initial_message.size()/4; ++i){
+		const string message_chunk = initial_message.substr(i*4, 4);
 		BinaryWord* bw = new BinaryWord(message_chunk, Endianness::BIG);
 		this->words.push_back(bw);
 		this->uint_words.push_back(bw->to_int());

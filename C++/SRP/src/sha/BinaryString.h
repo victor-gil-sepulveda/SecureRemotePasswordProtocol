@@ -35,7 +35,6 @@ class BinaryString {
 
 		std::vector<BinaryWord*> words;
 		std::vector<std::uint32_t> uint_words;
-		std::string message;
 		unsigned int num_512b_chunks;
 };
 

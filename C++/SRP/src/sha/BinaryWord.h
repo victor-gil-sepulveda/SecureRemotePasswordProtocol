@@ -20,7 +20,7 @@
  * TODO: Clearly endianness could be some sort of strategy class instead of enum+cases. This
  * is indeed a possible future refactoring.
  *
- * TODO: use std:: defined "known sizes"
+ * TODO: use std:: defined "known sizes" for unsigned char
  */
 class BinaryWord {
 	public:

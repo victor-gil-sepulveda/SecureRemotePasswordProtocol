@@ -65,22 +65,7 @@ BinaryWord::~BinaryWord() {}
 std::string BinaryWord::to_string() const{
 	std::string result;
 	result.resize(4);
-	switch(endianness){
-		case Endianness::LITTLE:
-		{
-			std::copy(bytes.begin(), bytes.end(), result.begin());
-			break;
-		}
-		case Endianness::BIG:
-		{
-			std::reverse_copy(bytes.begin(), bytes.end(), result.begin());
-			break;
-		}
-		default:
-		{
-			throw runtime_error("Reached default at BinaryWord::to_string");
-		}
-	}
+	std::copy(bytes.begin(), bytes.end(), result.begin());
 	return result;
 }
 
