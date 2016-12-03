@@ -21,14 +21,6 @@ using namespace std;
 #define CHUNK_BIT_SIZE 512
 #define LAST_CHUNK_BIT_SIZE 448
 
-namespace algorithms {
-
-Sha1::Sha1() {}
-
-Sha1::~Sha1() {}
-
-} /* namespace algorithms */
-
 std::string algorithms::Sha1::preprocess_message(const std::string& initial_message) {
 	std::string tmp_message;
 
