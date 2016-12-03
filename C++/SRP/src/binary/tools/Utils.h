@@ -35,12 +35,13 @@ namespace algorithms {
 		template <int n>
 		std::uint32_t circular_left_shift(std::uint32_t val);
 
+		template <int n>
+		std::uint32_t circular_right_shift(std::uint32_t val);
+
 		template <typename T>
 		std::string to_hex_str(T& s);
 
-
 		void print_32b_bin(std::uint32_t x, std::uint32_t y);
-
 
 	} /* namespace utils */
 
@@ -62,7 +63,7 @@ std::string algorithms::utils::to_hex_str(T& s){
 
 template <int n>
 std::uint32_t algorithms::utils::circular_left_shift(std::uint32_t val){
-	int amount = n % 64;
+	int amount = n % 32;
 	if (amount == 0) return val;
 
 	std::uint32_t mask = 0xFFFFFFFF;
@@ -71,9 +72,19 @@ std::uint32_t algorithms::utils::circular_left_shift(std::uint32_t val){
 	uint32_t l = lmask&val;
 	uint32_t h = hmask&val;
 	return l << n | h >> (32-n);
-
 }
 
+template <int n>
+std::uint32_t algorithms::utils::circular_right_shift(std::uint32_t val){
+	int amount = n % 32;
+	if (amount == 0) return val;
 
+	std::uint32_t mask = 0xFFFFFFFF;
+	std::uint32_t lmask = mask >> (32 - n);
+	std::uint32_t hmask = mask << n;
+	uint32_t l = lmask&val;
+	uint32_t h = hmask&val;
+	return l << (32 - n) | h >> n;
+}
 
 #endif /* BINARY_TOOLS_UTILS_H_ */

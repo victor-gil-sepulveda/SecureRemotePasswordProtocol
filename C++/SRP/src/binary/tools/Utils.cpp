@@ -94,3 +94,14 @@ std::uint32_t algorithms::utils::circular_left_shift<1>(std::uint32_t val){
 		return (val<<1) +1;
 	}
 }
+
+template <>
+std::uint32_t algorithms::utils::circular_right_shift<1>(std::uint32_t val){
+	std::uint32_t mask = 0x00000001;
+	if ((val&mask) == 0){
+		return val>>1;
+	}
+	else{
+		return (val>>1) | 0x80000000;
+	}
+}

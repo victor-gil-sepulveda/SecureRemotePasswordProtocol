@@ -174,9 +174,9 @@ BOOST_AUTO_TEST_CASE(r_circular_shift)
 	BOOST_CHECK_EQUAL(result, 0xFF000000);
 	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
 
-	val = 0xFF000000;
+	val = 0x000000FF;
 	result = algorithms::utils::circular_right_shift<8>(val);
-	BOOST_CHECK_EQUAL(result, 0x000000FF);
+	BOOST_CHECK_EQUAL(result, 0xFF000000);
 	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
 
 	val = 0x80000040;
