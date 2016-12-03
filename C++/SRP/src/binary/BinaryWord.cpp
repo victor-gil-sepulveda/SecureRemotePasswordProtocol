@@ -5,14 +5,14 @@
  *      Author: victor
  */
 
-#include "BinaryWord.h"
+#include "../binary/BinaryWord.h"
 
 #include <vector>
 #include <algorithm>
 #include <cstdint>
 #include <stdexcept>
 
-#include "Utils.h"
+#include "../binary/tools/Utils.h"
 using std::runtime_error;
 using std::vector;
 

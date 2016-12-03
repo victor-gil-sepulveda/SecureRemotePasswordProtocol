@@ -5,15 +5,15 @@
  *      Author: victor
  */
 
-#include "BinaryString.h"
+#include "../binary/BinaryString.h"
 
 #include <boost/assert.hpp>
 #include <algorithm>
 #include <iostream>
 
-#include "BinaryStringUtils.h"
 #include "BinaryWord.h"
-#include "Utils.h"
+#include "tools/BinaryStringUtils.h"
+#include "tools/Utils.h"
 using namespace std;
 
 

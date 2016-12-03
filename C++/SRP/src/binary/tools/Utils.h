@@ -5,8 +5,8 @@
  *      Author: victor
  */
 
-#ifndef SHA_UTILS_H_
-#define SHA_UTILS_H_
+#ifndef BINARY_TOOLS_UTILS_H_
+#define BINARY_TOOLS_UTILS_H_
 
 #include <vector>
 #include <string>
@@ -76,4 +76,4 @@ std::uint32_t algorithms::utils::circular_left_shift(std::uint32_t val){
 
 
 
-#endif /* SHA_UTILS_H_ */
+#endif /* BINARY_TOOLS_UTILS_H_ */

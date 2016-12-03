@@ -6,10 +6,11 @@
  */
 
 
-#include "BinaryStringUtils.h"
+#include "../binary/tools/BinaryStringUtils.h"
 
-#include "BinaryWord.h"
 #include <string>
+
+#include "../BinaryWord.h"
 using namespace std;
 
 namespace algorithms {

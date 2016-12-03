@@ -5,8 +5,8 @@
  *      Author: victor
  */
 
-#ifndef SHA_BINARYWORD_H_
-#define SHA_BINARYWORD_H_
+#ifndef BINARY_BINARYWORD_H_
+#define BINARY_BINARYWORD_H_
 
 #include <cstdint>
 #include <string>
@@ -54,4 +54,4 @@ class BinaryWord {
 
 };
 
-#endif /* SHA_BINARYWORD_H_ */
+#endif /* BINARY_BINARYWORD_H_ */

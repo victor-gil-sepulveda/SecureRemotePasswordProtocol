@@ -5,8 +5,8 @@
  *      Author: victor
  */
 
-#ifndef SHA_BINARYSTRING_H_
-#define SHA_BINARYSTRING_H_
+#ifndef BINARY_BINARYSTRING_H_
+#define BINARY_BINARYSTRING_H_
 
 #include <cstdint>
 #include <vector>
@@ -38,4 +38,4 @@ class BinaryString {
 		unsigned int num_512b_chunks;
 };
 
-#endif /* SHA_BINARYSTRING_H_ */
+#endif /* BINARY_BINARYSTRING_H_ */
