@@ -9,8 +9,7 @@
 #include <vector>
 #include <iostream>
 
-#include "../../SRP/src/sha/BinaryWord.h"
-#include "../../SRP/src/sha/Utils.h"
+#include "../../SRP/src/binary/BinaryWord.h"
 using namespace std;
 
 #include <boost/test/unit_test.hpp>

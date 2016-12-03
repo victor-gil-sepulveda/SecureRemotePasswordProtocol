@@ -11,8 +11,8 @@
 #include <stdexcept>
 #include <iostream>
 
-#include "../../SRP/src/sha/BinaryStringUtils.h"
-#include "../../SRP/src/sha/Utils.h"
+#include "../../SRP/src/binary/tools/BinaryStringUtils.h"
+#include "../../SRP/src/binary/tools/Utils.h"
 #include "TestTools.h"
 using namespace std;
 

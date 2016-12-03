@@ -7,7 +7,6 @@
 
 #include <string>
 #include <vector>
-#include "../../SRP/src/sha/Utils.h"
 
 using namespace std;
 

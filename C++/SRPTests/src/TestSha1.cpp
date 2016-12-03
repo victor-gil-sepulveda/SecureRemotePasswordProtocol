@@ -9,9 +9,9 @@
 #include <iostream>
 #include <string>
 
-#include "../../SRP/src/sha/Base64.h"
-#include "../../SRP/src/sha/Sha1.h"
-#include "../../SRP/src/sha/Utils.h"
+#include "../../SRP/src/algorithms/Base64.h"
+#include "../../SRP/src/algorithms/sha/Sha1.h"
+#include "../../SRP/src/binary/tools/Utils.h"
 using namespace std;
 
 #include <boost/test/unit_test.hpp>
