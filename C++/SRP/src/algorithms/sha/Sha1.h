@@ -15,7 +15,7 @@
 #include <string>
 #include <vector>
 
-#include "../binary/BinaryString.h"
+#include "../../binary/BinaryString.h"
 
 
 namespace algorithms {

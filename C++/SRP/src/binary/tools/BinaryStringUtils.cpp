@@ -6,7 +6,7 @@
  */
 
 
-#include "../binary/tools/BinaryStringUtils.h"
+#include "BinaryStringUtils.h"
 
 #include <string>
 

@@ -11,11 +11,11 @@
 #include <string>
 #include <iostream>
 
-#include "../binary/BinaryString.h"
-#include "../binary/BinaryWord.h"
-#include "../binary/Endianness.h"
-#include "../binary/tools/BinaryStringUtils.h"
-#include "../binary/tools/Utils.h"
+#include "../../binary/BinaryString.h"
+#include "../../binary/BinaryWord.h"
+#include "../../binary/Endianness.h"
+#include "../../binary/tools/BinaryStringUtils.h"
+#include "../../binary/tools/Utils.h"
 using namespace std;
 
 #define CHUNK_BIT_SIZE 512
