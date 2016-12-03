@@ -157,5 +157,41 @@ BOOST_AUTO_TEST_CASE(l_circular_shift)
 	IF_VERBOSE(algorithms::utils::print_32b_bin(expected, result));
 }
 
+BOOST_AUTO_TEST_CASE(r_circular_shift)
+{
+	std::uint32_t val = 0x00000002;
+	std::uint32_t result = algorithms::utils::circular_right_shift<1>(val);
+	BOOST_CHECK_EQUAL(result, 0x00000001);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+
+	val = 0x00000008;
+	result = algorithms::utils::circular_right_shift<3>(val);
+	BOOST_CHECK_EQUAL(result, 0x00000001);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+
+	val = 0xF000000F;
+	result = algorithms::utils::circular_right_shift<4>(val);
+	BOOST_CHECK_EQUAL(result, 0xFF000000);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+
+	val = 0xFF000000;
+	result = algorithms::utils::circular_right_shift<8>(val);
+	BOOST_CHECK_EQUAL(result, 0x000000FF);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+
+	val = 0x80000040;
+	result = algorithms::utils::circular_right_shift<7>(val);
+	BOOST_CHECK_EQUAL(result, 0x81000000);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+
+	// Non-trivial case
+	val = 2079550178;
+	uint32_t expected = 4023233417;
+	result = algorithms::utils::circular_right_shift<30>(val);
+	BOOST_CHECK_EQUAL(result, expected);
+	IF_VERBOSE(algorithms::utils::print_32b_bin(val, result));
+	IF_VERBOSE(algorithms::utils::print_32b_bin(expected, result));
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 

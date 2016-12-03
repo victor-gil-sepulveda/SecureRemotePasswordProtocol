@@ -8,7 +8,7 @@
 #ifndef TESTTOOLS_H_
 #define TESTTOOLS_H_
 
-#define VERBOSE_TESTS
+//#define VERBOSE_TESTS
 
 #ifdef VERBOSE_TESTS
 	#define IF_VERBOSE(x) (x)
