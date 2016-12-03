@@ -36,13 +36,22 @@ namespace algorithms {
 				std::uint32_t& h3, std::uint32_t& h4,
 				const std::vector<std::uint32_t>& words);
 
-			enum Sha1Constants:std::uint32_t {
+			enum InitialHashValues:std::uint32_t {
 				H0 = 0x67452301,
 				H1 = 0xEFCDAB89,
 				H2 = 0x98BADCFE,
 				H3 = 0x10325476,
 				H4 = 0xC3D2E1F0
 			};
+
+			enum ChunkSizes{
+				CHUNK_BIT_SIZE = 512,
+				LAST_CHUNK_BIT_SIZE = 448
+			};
+
+
+
+
 	}
 
 } /* namespace algorithms */

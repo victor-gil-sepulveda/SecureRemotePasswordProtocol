@@ -72,11 +72,11 @@ BOOST_AUTO_TEST_CASE(main_loop)
 				3029344622, 777259672, 1092488617, 2625324688, 935495138};
 
 	vector<std::uint32_t> hs = {
-			algorithms::Sha1::Sha1Constants::H0,
-			algorithms::Sha1::Sha1Constants::H1,
-			algorithms::Sha1::Sha1Constants::H2,
-			algorithms::Sha1::Sha1Constants::H3,
-			algorithms::Sha1::Sha1Constants::H4
+			algorithms::Sha1::InitialHashValues::H0,
+			algorithms::Sha1::InitialHashValues::H1,
+			algorithms::Sha1::InitialHashValues::H2,
+			algorithms::Sha1::InitialHashValues::H3,
+			algorithms::Sha1::InitialHashValues::H4
 	};
 
 	vector<std::uint32_t> expected_hs = {4131966402, 3471270902, 3415246752, 1476864369, 764617998};

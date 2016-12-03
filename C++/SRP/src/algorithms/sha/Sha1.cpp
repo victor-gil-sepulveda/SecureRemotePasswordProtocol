@@ -18,8 +18,6 @@
 #include "../../binary/tools/Utils.h"
 using namespace std;
 
-#define CHUNK_BIT_SIZE 512
-#define LAST_CHUNK_BIT_SIZE 448
 
 std::string algorithms::Sha1::preprocess_message(const std::string& initial_message) {
 	std::string tmp_message;
@@ -38,8 +36,8 @@ std::string algorithms::Sha1::preprocess_message(const std::string& initial_mess
 	// Append 0 ≤ k < 512 bits '0', such that the resulting message length in bits
 	// is congruent to −64 ≡ 448 (mod 512)
 	message = algorithms::utils::pad_with_character(message, 0x00,
-			BIT_TO_BYTE_SIZE(CHUNK_BIT_SIZE),
-			BIT_TO_BYTE_SIZE(LAST_CHUNK_BIT_SIZE));
+			BIT_TO_BYTE_SIZE(ChunkSizes::CHUNK_BIT_SIZE),
+			BIT_TO_BYTE_SIZE(ChunkSizes::LAST_CHUNK_BIT_SIZE));
 
 	// Append ml, the original message length, as a 64-bit big-endian integer. Thus, the total
 	// length is a multiple of 512 bits.
@@ -156,11 +154,11 @@ void algorithms::Sha1::main_loop(std::uint32_t& h0, std::uint32_t& h1,
 
 std::string algorithms::Sha1::calculate_hash(const std::string& initial_message) {
 
-	std::uint32_t h0 = Sha1Constants::H0;
-	std::uint32_t h1 = Sha1Constants::H1;
-	std::uint32_t h2 = Sha1Constants::H2;
-	std::uint32_t h3 = Sha1Constants::H3;
-	std::uint32_t h4 = Sha1Constants::H4;
+	std::uint32_t h0 = InitialHashValues::H0;
+	std::uint32_t h1 = InitialHashValues::H1;
+	std::uint32_t h2 = InitialHashValues::H2;
+	std::uint32_t h3 = InitialHashValues::H3;
+	std::uint32_t h4 = InitialHashValues::H4;
 
 	std::string message = preprocess_message(initial_message);
 
