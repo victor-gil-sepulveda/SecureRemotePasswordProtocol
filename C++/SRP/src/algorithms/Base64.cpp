@@ -32,7 +32,7 @@
  *      Author: victor
  */
 
-#include "Base64.h"
+#include "../algorithms/Base64.h"
 
 namespace algorithms {
 

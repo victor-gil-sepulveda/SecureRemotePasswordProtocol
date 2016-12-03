@@ -9,19 +9,20 @@
  *      Author: victor
  */
 
-#ifndef SHA_SHA1_H_
-#define SHA_SHA1_H_
+#ifndef ALGORITHMS_SHA_SHA1_H_
+#define ALGORITHMS_SHA_SHA1_H_
 #include <cstdint>
 #include <string>
 #include <vector>
 
-#include "BinaryString.h"
+#include "../binary/BinaryString.h"
 
 
 namespace algorithms {
 
 /*
  * SHA-1, following the algorithm in https://en.wikipedia.org/wiki/SHA-1
+ * TODO: Sha class is stateless. Must be converted to a namespace
  */
 class Sha1 {
 
@@ -52,4 +53,4 @@ class Sha1 {
 
 } /* namespace algorithms */
 
-#endif /* SHA_SHA1_H_ */
+#endif /* ALGORITHMS_SHA_SHA1_H_ */

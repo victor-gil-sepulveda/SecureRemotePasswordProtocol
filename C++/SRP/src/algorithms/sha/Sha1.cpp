@@ -5,17 +5,17 @@
  *      Author: victor
  */
 
-#include "Sha1.h"
+#include "../../algorithms/sha/Sha1.h"
 
 #include <boost/assert.hpp>
 #include <string>
 #include <iostream>
 
-#include "BinaryString.h"
-#include "BinaryStringUtils.h"
-#include "BinaryWord.h"
-#include "Endianness.h"
-#include "Utils.h"
+#include "../binary/BinaryString.h"
+#include "../binary/BinaryWord.h"
+#include "../binary/Endianness.h"
+#include "../binary/tools/BinaryStringUtils.h"
+#include "../binary/tools/Utils.h"
 using namespace std;
 
 #define CHUNK_BIT_SIZE 512
@@ -73,6 +73,8 @@ void algorithms::Sha1::word_array_init(unsigned int chunk_id,
 void algorithms::Sha1::main_loop(std::uint32_t& h0, std::uint32_t& h1,
 		std::uint32_t& h2, std::uint32_t& h3, std::uint32_t& h4,
 		const vector<std::uint32_t>& words) {
+
+	//TODO: MUST addition be % 2^32?
 
 	std::uint32_t a, b, c, d, e, f, k, temp;
 

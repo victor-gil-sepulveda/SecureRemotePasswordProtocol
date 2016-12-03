@@ -5,8 +5,8 @@
  *      Author: victor
  */
 
-#ifndef SHA_BASE64_H_
-#define SHA_BASE64_H_
+#ifndef ALGORITHMS_BASE64_H_
+#define ALGORITHMS_BASE64_H_
 #include <string>
 
 namespace algorithms {
@@ -26,4 +26,4 @@ namespace algorithms {
 
 } /* namespace algorithms */
 
-#endif /* SHA_BASE64_H_ */
+#endif /* ALGORITHMS_BASE64_H_ */
