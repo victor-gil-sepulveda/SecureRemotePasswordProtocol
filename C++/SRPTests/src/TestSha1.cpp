@@ -95,17 +95,17 @@ BOOST_AUTO_TEST_CASE(full_sha1)
 	// Expected results obtained with this Python line:
 	// base64.b64encode(hashlib.sha1("<TEXT>").digest())
 
-	string hash = algorithms::Sha1::calculate(std::string("Hola!"));
+	string hash = algorithms::Sha1::calculate_hash(std::string("Hola!"));
 	string expected_b64_hash = "9kjNws7nY/bLkIegWAcpcS2TJQ4=";
 	string b64_hash = algorithms::Base64::base64_encode((unsigned char*) hash.c_str(), hash.size());
 	BOOST_CHECK_EQUAL(b64_hash, expected_b64_hash);
 
-	hash = algorithms::Sha1::calculate(std::string("Adios!"));
+	hash = algorithms::Sha1::calculate_hash(std::string("Adios!"));
 	expected_b64_hash = "c8wqZwVik9pzoVh2AVw6RfFzMk4=";
 	b64_hash = algorithms::Base64::base64_encode((unsigned char*) hash.c_str(), hash.size());
 	BOOST_CHECK_EQUAL(b64_hash, expected_b64_hash);
 
-	hash = algorithms::Sha1::calculate(std::string(
+	hash = algorithms::Sha1::calculate_hash(std::string(
 			"This is a message using more than 512b (64 characters). The goal here"
 			" is to force the algorithm to process more than one 512b chunk"));
 	expected_b64_hash = "16Yeg95nRpf8C6Z/3KK7aU6Om0U=";

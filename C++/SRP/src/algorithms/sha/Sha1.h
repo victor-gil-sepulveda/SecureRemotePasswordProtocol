@@ -25,7 +25,7 @@ namespace algorithms {
 	 */
 	namespace Sha1 {
 
-			std::string calculate(std::string const& initial_message);
+			std::string calculate_hash(std::string const& initial_message);
 
 			std::string preprocess_message(std::string const& initial_message);
 

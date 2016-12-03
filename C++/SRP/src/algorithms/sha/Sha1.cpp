@@ -154,7 +154,7 @@ void algorithms::Sha1::main_loop(std::uint32_t& h0, std::uint32_t& h1,
 	h4 += e;
 }
 
-std::string algorithms::Sha1::calculate(const std::string& initial_message) {
+std::string algorithms::Sha1::calculate_hash(const std::string& initial_message) {
 
 	std::uint32_t h0 = Sha1Constants::H0;
 	std::uint32_t h1 = Sha1Constants::H1;
