@@ -38,6 +38,7 @@
 								<option defaultValue="false" id="llvm.c.link.option.nativeCBackEnd.1016429526" name="Create native binary (with C backend code generator)" superClass="llvm.c.link.option.nativeCBackEnd" useByScannerDiscovery="false" valueType="boolean"/>
 								<option id="llvm.c.link.option.libs.1804153154" name="Libraries (-l)" superClass="llvm.c.link.option.libs" useByScannerDiscovery="false" valueType="libs">
 									<listOptionValue builtIn="false" value="stdc++"/>
+									<listOptionValue builtIn="false" value="gmp"/>
 								</option>
 								<option id="llvm.c.link.option.paths.1673921690" name="Library search path (-L)" superClass="llvm.c.link.option.paths" useByScannerDiscovery="false" valueType="libPaths">
 									<listOptionValue builtIn="false" value="/usr/lib/gcc/x86_64-linux-gnu/5/"/>
@@ -127,4 +128,5 @@
 		</configuration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>
