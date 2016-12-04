@@ -48,10 +48,6 @@ namespace algorithms {
 				CHUNK_BIT_SIZE = 512,
 				LAST_CHUNK_BIT_SIZE = 448
 			};
-
-
-
-
 	}
 
 } /* namespace algorithms */

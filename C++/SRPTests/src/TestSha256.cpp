@@ -6,6 +6,9 @@
  */
 
 #include <string>
+
+#include "../../SRP/src/algorithms/Base64.h"
+#include "../../SRP/src/algorithms/sha/Sha256.h"
 using namespace std;
 
 #include <boost/test/unit_test.hpp>
