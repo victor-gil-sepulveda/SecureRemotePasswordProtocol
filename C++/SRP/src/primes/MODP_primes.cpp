@@ -13,7 +13,7 @@
 
 using std::runtime_error;
 
-void primes::generate_prime(const std::string& prime_str){
+mpz_t primes::generate_prime(const std::string& prime_str){
 	// TODO: Check build options as a initial way to speed up the exe
 	// https://gmplib.org/manual/Build-Options.html#Build-Options
 
