@@ -50,23 +50,15 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<folderInfo id="cdt.managedbuild.config.llvm.clang.linux.exe.debug.927606439.2110032255" name="/" resourcePath="sha">
-						<toolChain id="cdt.managedbuild.toolchain.llvm.clang.linux.exe.debug.2095223537" name="LLVM with Clang (Linux)" superClass="cdt.managedbuild.toolchain.llvm.clang.linux.exe.debug" unusedChildren="">
-							<tool id="cdt.managedbuild.tool.llvm.clang.linux.assembler.exe.debug.1991433111" name="LLVM assembler" superClass="cdt.managedbuild.tool.llvm.clang.linux.assembler.exe.debug.1065641392"/>
-							<tool id="cdt.managedbuild.tool.llvm.archiver.base.251021637" name="LLVM archiver" superClass="cdt.managedbuild.tool.llvm.archiver.base.31419633"/>
-							<tool id="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.exe.debug.653356978" name="LLVM Clang" superClass="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.exe.debug.1758813489"/>
-							<tool id="cdt.managedbuild.tool.llvm.clang.linux.cpp.compiler.exe.debug.163622109" name="LLVM Clang++" superClass="cdt.managedbuild.tool.llvm.clang.linux.cpp.compiler.exe.debug.1651594411"/>
-							<tool id="cdt.managedbuild.tool.llvm.clang.linux.c.linker.exe.debug.1448816546" name="LLVM Clang C linker" superClass="cdt.managedbuild.tool.llvm.clang.linux.c.linker.exe.debug.293422540"/>
-							<tool id="cdt.managedbuild.tool.llvm.clang.linux.cpp.linker.exe.debug.1387899859" name="LLVM Clang C++ linker" superClass="cdt.managedbuild.tool.llvm.clang.linux.cpp.linker.exe.debug.1257358150"/>
-						</toolChain>
-					</folderInfo>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="sha"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="srp_src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
-			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
+				<externalSettings containerId="SRP;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier"/>
+			</storageModule>
 		</cconfiguration>
 		<cconfiguration id="cdt.managedbuild.config.llvm.clang.linux.exe.release.1737399470">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.llvm.clang.linux.exe.release.1737399470" moduleId="org.eclipse.cdt.core.settings" name="Release">

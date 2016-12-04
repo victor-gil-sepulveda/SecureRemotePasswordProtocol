@@ -14,6 +14,8 @@
 #include "../../binary/Endianness.h"
 #include "../../binary/tools/Utils.h"
 #include "Sha1.h"
+#include <iostream>
+using namespace std;
 
 std::string algorithms::Sha256::calculate_hash(
 		const std::string& initial_message) {
@@ -75,6 +77,7 @@ void algorithms::Sha256::word_array_init(unsigned int chunk_id,
 				(words[i-2] >> 10);
 		words[i] = words[i-16] + s0 + words[i-7] + s1;
 	}
+
 }
 
 void algorithms::Sha256::main_loop(std::uint32_t& h0, std::uint32_t& h1,
@@ -149,5 +152,4 @@ void algorithms::Sha256::main_loop(std::uint32_t& h0, std::uint32_t& h1,
 	    h5 += f;
 	    h6 += g;
 	    h7 += h;
-
 }

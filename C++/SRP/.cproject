@@ -49,7 +49,7 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.config.llvm.clang.linux.exe.debug.491638898.1965013376" name="BinaryString.h" rcbsApplicability="disable" resourcePath="src/sha/BinaryString.h" toolsToInvoke=""/>
+					<fileInfo id="cdt.managedbuild.config.llvm.clang.linux.exe.debug.491638898.1965013376" name="BinaryString.h" rcbsApplicability="disable" resourcePath="src/binary/BinaryString.h" toolsToInvoke=""/>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
